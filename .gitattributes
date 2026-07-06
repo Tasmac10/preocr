@@ -1,0 +1,6 @@
+# Preserva os bytes das imagens exatamente (sem conversao de fim de linha)
+*.pbm -text
+*.pgm -text
+*.ppm -text
+*.pdf binary
+*.odt binary
