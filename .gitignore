@@ -1,0 +1,27 @@
+# Build / binários
+/build/
+*.o
+*.obj
+*.exe
+*.out
+preocr
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+
+# Java
+*.class
+target/
+
+# Editores / SO
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Saídas geradas (manter apenas as imagens de teste versionadas em images/input)
+/images/output/*
+!/images/output/.gitkeep
