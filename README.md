@@ -55,12 +55,37 @@ Exemplo (grupo 9): `grupo_09_imagem_2_linhas_25_palavras_259.pbm`
 
 ## Compilação e execução
 
-> A linguagem ainda será definida (aceitas: Python, Java, C++, C). Esta seção será preenchida com as instruções de compilação e execução no Linux.
+Projeto em **C++ (C++17)**. Compilação no Linux com `g++` via Makefile:
 
+```bash
+make                 # gera o binário ./preocr
+make clean           # remove objetos e binário
 ```
-# exemplo (a definir)
-# ./preocr images/input/grupo_XX_imagem_1_linhas_Y_palavras_Z.pbm images/output/saida.pbm
+
+Execução:
+
+```bash
+./preocr <entrada.pbm> [saida.pbm]
+# saida.pbm é opcional (padrão: saida.pbm)
+
+# exemplo:
+./preocr images/samples/lorem_s12_c02_noise.pbm images/output/saida.pbm
+# atalho via Makefile:
+make run ARGS="images/samples/lorem_s12_c02_noise.pbm images/output/saida.pbm"
 ```
+
+O programa imprime no terminal o número de **colunas**, **linhas** e **palavras** e
+grava a imagem PBM de saída com cada palavra circunscrita por um retângulo.
+
+### Organização do código
+
+| Módulo (`include/` + `src/`) | Responsável | Função |
+|------------------------------|-------------|--------|
+| `image`        | Membro 1 | estrutura `Image`, leitura/escrita PBM P1, `BBox` |
+| `noise`        | Membro 2 | remoção de ruído sal-e-pimenta |
+| `segmentation` | Membro 3 | segmentação em colunas e linhas |
+| `words`        | Membro 4 | detecção de palavras e desenho dos retângulos |
+| `main`         | —        | orquestra o pipeline e a saída no terminal |
 
 ## Avaliação
 
