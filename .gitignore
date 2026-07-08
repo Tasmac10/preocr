@@ -4,7 +4,9 @@
 *.obj
 *.exe
 *.out
+*.pbm
 preocr
+test_noise
 
 # Python
 __pycache__/

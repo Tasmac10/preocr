@@ -7,6 +7,7 @@
 CXX      := g++
 CXXFLAGS := -std=c++17 -O2 -Wall -Wextra -Iinclude
 BIN      := preocr
+TEST_BIN := test_noise
 
 SRC := $(wildcard src/*.cpp)
 OBJ := $(SRC:.cpp=.o)
@@ -22,7 +23,15 @@ src/%.o: src/%.cpp
 run: $(BIN)
 	./$(BIN) $(ARGS)
 
-clean:
-	rm -f $(OBJ) $(BIN)
+# Teste isolado do modulo de ruido (Membro 2), independente do resto do pipeline.
+# Ex.: make test && ./test_noise images/samples/lorem_s12_c02_noise.pbm out.pbm \
+#      images/samples/lorem_s12_c02.pbm
+test: $(TEST_BIN)
 
-.PHONY: all run clean
+$(TEST_BIN): tests/test_noise.cpp src/noise.cpp
+	$(CXX) $(CXXFLAGS) -o $@ $^
+
+clean:
+	rm -f $(OBJ) $(BIN) $(TEST_BIN)
+
+.PHONY: all run test clean
